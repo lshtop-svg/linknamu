@@ -2,15 +2,30 @@
 
 import type { LinkItem } from "@/data/profile";
 
-type Props = LinkItem & { clicks: number; onClick?: () => void };
+type Props = LinkItem & {
+  clicks: number;
+  onClick?: () => void;
+  onCounted?: (count: number) => void;
+};
 
-export default function LinkCard({ id, title, url, clicks, onClick }: Props) {
-  // 이동을 막지 않도록 응답을 기다리지 않고 클릭을 기록한다
+export default function LinkCard({
+  id,
+  title,
+  url,
+  clicks,
+  onClick,
+  onCounted,
+}: Props) {
+  // 링크는 새 탭에서 열리므로 응답을 기다려도 이동이 막히지 않는다.
+  // 응답의 DB 값으로 덮어써서 다른 곳에서 누른 횟수까지 반영한다.
   const recordClick = () => {
     onClick?.();
-    fetch(`/api/click/${id}`, { method: "POST", keepalive: true }).catch(
-      () => {}
-    );
+    fetch(`/api/click/${id}`, { method: "POST", keepalive: true })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (typeof data?.count === "number") onCounted?.(data.count);
+      })
+      .catch(() => {});
   };
 
   return (

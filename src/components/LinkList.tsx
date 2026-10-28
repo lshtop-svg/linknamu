@@ -28,6 +28,9 @@ export default function LinkList({ links }: { links: LinkItem[] }) {
             {...link}
             clicks={counts[link.id] ?? 0}
             onClick={() => increase(link.id)}
+            onCounted={(count) =>
+              setCounts((prev) => ({ ...prev, [link.id]: count }))
+            }
           />
         </li>
       ))}
