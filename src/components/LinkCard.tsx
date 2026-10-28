@@ -18,11 +18,11 @@ export default function LinkCard({ id, title, url, clicks }: Props) {
       target="_blank"
       rel="noopener noreferrer"
       onClick={recordClick}
-      className="flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-white px-6 py-4 font-medium shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+      className="flex w-full items-center justify-between rounded-3xl border border-white/60 bg-white/40 px-6 py-4 font-semibold shadow-[0_8px_30px_rgba(180,100,50,0.08)] backdrop-blur-md transition duration-200 hover:bg-white/60 hover:shadow-[0_10px_34px_rgba(180,100,50,0.14)] dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
     >
       <span>{title}</span>
       {clicks !== undefined && (
-        <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+        <span className="text-sm font-normal text-stone-500 dark:text-stone-400">
           {clicks.toLocaleString()}회
         </span>
       )}

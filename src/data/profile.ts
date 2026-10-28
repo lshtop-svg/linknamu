@@ -10,11 +10,10 @@ export type LinkItem = {
   url: string;
 };
 
-// TODO: 더미 값입니다. 실제 내용으로 교체하세요 (사진은 public/ 아래에 넣고 경로 지정)
 export const profile: Profile = {
-  name: "김클로",
-  bio: "세계 최강 바이브코더",
-  photo: "/dummy-profile.svg",
+  name: "이승훈",
+  bio: "신아 시스템 개발자 | 요즘 CLAUDE에 관심이 많아요",
+  photo: "https://placehold.co/150/orange/white.png",
 };
 
 export const links: LinkItem[] = [
